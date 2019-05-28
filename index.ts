@@ -10,7 +10,7 @@ console.log(BASE_PATH);
 class App {
     private httpServer: HTTP.Server;
     private expressApplication: Express.Application;
-
+    private colorName: string = '';
 
     constructor() {
         this.startHTTPServer();
@@ -35,7 +35,14 @@ class App {
 
         router.get('*', (request: Express.Request, response: Express.Response, next: Express.NextFunction): void => {
             let colorNames: string[] = FS.readFileSync(BASE_PATH).toString().split('|');
-            response.send(colorNames.length > 1 ? colorNames[colorNames.length - 2] : 'black'); // send whatever file the client requested
+            let colorName: string = colorNames.length > 1 ? colorNames[colorNames.length - 2] : 'black';
+
+            if (colorName != this.colorName) {
+                this.colorName = colorName;
+                FS.writeFileSync(BASE_PATH, this.colorName + '|');
+            }
+
+            response.send(this.colorName);
         });
 
         this.expressApplication.use('/', router);
@@ -61,7 +68,6 @@ class App {
         process.exit(1);
     }
     // #endregion
-
 }
 
 const app: App = new App(); // start the app
