@@ -1,32 +1,27 @@
 Wallpaper Engine (WE)/iCUE integration:
 	The end result is being able to automatically set all available LEDs from iCUE to the RGB value
-	specified in the accompanying text file.
+	of the HTML color name in the accompanying text file.
 
 	This was created with the intent to be able to control Corsair LEDs with Google Assistant, but
-	anything you want to use should work; all that needs to happen is changing the RGB value in the
+	anything you want to use should work; all that needs to happen is changing the color in the
 	text file.
 
 	This can also be used in conjunction with any other web wallpaper (see setup directions below).
 
-	The explanations and directions in this readme are targeted at non-programmer users, so if you
-	know how Node and Typescript work and you can code, then you can just skim this file.
-	Otherwise, modify these files at your own risk.
-
 How it works:
-	Setting a web/html wallpaper with WE lets you control of Corsair LEDs with using JavaScript,
+	Setting a web/html wallpaper with WE lets you control of Corsair LEDs using JavaScript (JS),
 	thanks to WE's iCUE integration. While running a local HTTP server, the web wallpaper can
 	repeatedly get the contents of a file from the server, which in this case contains a RGB value.
 	This lets you indirectly automatically set the color value for your Corsair LEDs to any valid
 	RGB value.
 
 	Main Components:
-		index.ts - Typescript file for running a local HTTP server using Node and Express
+		index.ts - Typescript (TS) file for running a local HTTP server using Node and Express
 		wallpaper.ts - Typescript file for requesting file contents from the server
-		colors.txt - text file containing the RGB value
 
 	Additional Files:
 		wallpaper.html - HTML file to load into WE, to run the script in wallpaper.ts
-		package.json - JSON file containing the dependencies needed to compile the TypeScript (TS)
+		package.json - JSON file containing the dependencies needed to compile the TypeScript
 					   files and run the Node commands
 		tsconfig.json - JSON file with settings used for compiling the TS files
 		readme.README - README file that you're reading right now, with all the directions
@@ -50,16 +45,14 @@ Prerequisites:
 
 Normal Setup:
 	1. run 'npm install' in a command prompt from this folder
-		- this should create a 'node_modules' folder with a bunch of stuff in it that you need, as
-		  as well as package-lock.json
 	2. run 'npm build-start' in the same command prompt
 		- this compiles the TS files into JS and starts the HTTP server; after this you should see
 		  that the HTTP server is listening on whatever port is set in index.ts
 	3. run iCUE and ensure that 'Enable SDK' is checked in the settings
 		- note: iCUE must be running before WE so that the integration works correctly
 	4. run WE -> 'open from file' -> navigate to and select wallpaper.html
-	5. go to colors.txt and enter any RGB value, with the numbers (0-255) separated by spaces
-		- these 3 numbers must be the only contents in the file
+	5. go to colors.txt and enter any HTML color name
+		- see wallpaper.ts for the list
 		- entering invalid input won't damage your system; it'll just make all the LEDs black by
 		  default
 	6. either modify the text file manually or run your other program to modify it automatically
