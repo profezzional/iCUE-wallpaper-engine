@@ -39,7 +39,7 @@ class App {
 
             if (colorName != this.colorName) {
                 this.colorName = colorName;
-                FS.writeFileSync(BASE_PATH, this.colorName + '|');
+                FS.writeFileSync(BASE_PATH, this.colorName + '|'); // write new value back to file to keep file size and sync time small
             }
 
             response.send(this.colorName);
