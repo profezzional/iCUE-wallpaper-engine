@@ -35,7 +35,7 @@ class App {
 
         router.get('*', (request: Express.Request, response: Express.Response, next: Express.NextFunction): void => {
             let colorNames: string[] = FS.readFileSync(BASE_PATH).toString().split('|');
-            let colorName: string = colorNames.length > 1 ? colorNames[colorNames.length - 2] : 'black';
+            let colorName: string = (colorNames.length > 1 ? colorNames[colorNames.length - 2] : 'black').toLocaleLowerCase().replace(' ', '');
 
             if (colorName != this.colorName) {
                 this.colorName = colorName;
