@@ -67,7 +67,7 @@ Debugging/Developer Further Setup:
 		  always work
 	10. you should see some logs in the Console
 	11. if you modify any of the wallpaper files, the easiest way I found for forcing WE (and
-		DevTools by extension) is assigning a hotkey to the wallpaper in WE (I used ctrl+r)
+		DevTools by extension) to reload is assigning a hotkey to the wallpaper in WE (I used ctrl+r)
 		- this is after re-compiling the TS if you modified any of the TS files
 
 Notes:
